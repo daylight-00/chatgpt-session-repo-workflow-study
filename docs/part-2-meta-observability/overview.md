@@ -8,10 +8,13 @@ How much information about artifacts, sessions, and historical project chronolog
 
 This part does not directly test whether software can be built. It studies the observability of the environment itself: File Library object metadata, search-result behavior, timestamp semantics, session-level historical context, event ordering, conversation/session enumeration limits, and practical chronology reconstruction.
 
-Detailed report and experiment record currently remain at:
+Detailed report:
 
-- `docs/06-search-and-timeline-reconstruction.md`
-- `experiments/search-recovery.md`
+- `timeline-reconstruction.md`
+
+Experiment record:
+
+- `experiments/part-2-meta-observability/search-recovery.md`
 
 Compact source probes are collected under `evidence/part-2-meta-observability/`.
 
