@@ -1,0 +1,83 @@
+=== C COMPILE/RUN ===
+c-compiler-ok
+c-compiler-ok
+=== C++ COMPILE/RUN ===
+cpp-compiler-ok
+cpp-compiler-ok
+=== MESON MODULE CHECK ===
+/opt/pyvenv/bin/python3: Error while finding module specification for 'mesonbuild.mesonmain' (ModuleNotFoundError: No module named 'mesonbuild')
+WARNING: Package(s) not found: meson
+=== MESA DEP PKG-CONFIG CHECK ===
+libdrm: NO
+libdrm_amdgpu: NO
+libdrm_nouveau: NO
+libdrm_radeon: NO
+x11: YES 1.8.12
+xcb: YES 1.17.0
+xcb-randr: NO
+xcb-shm: NO
+xcb-xfixes: NO
+xcb-dri3: NO
+xcb-present: NO
+wayland-client: NO
+wayland-server: NO
+wayland-egl: NO
+wayland-protocols: NO
+libudev: NO
+libelf: NO
+expat: YES 2.7.1
+zlib: YES 1.3.1
+llvm: NO
+libclc: NO
+valgrind: NO
+=== CPYTHON LINK CHECKS ===
+/mnt/data/build_capability_probe_20260707/check_deps.c:4:10: fatal error: readline/readline.h: No such file or directory
+=== TOOL VERSIONS CONCISE ===
+gcc (Debian 14.2.0-19) 14.2.0
+clang version 17.0.0
+GNU Make 4.4.1
+cmake version 3.31.6
+ninja 1.12.1
+pkg-config 1.8.1
+git version 2.47.3
+Python 3.13.5
+=== CPYTHON INDIVIDUAL DEPENDENCY CHECKS ===
+zlib: YES 1.3.1
+openssl: YES 3.5.5
+sqlite3: YES 3.46.1
+libffi: NO
+bzip2: YES 1.0.8
+liblzma: YES 5.8.1
+ncurses: NO
+gdbm: NO
+uuid: YES 2.41.0
+readline: NO
+tk: NO
+=== RELEVANT DEBIAN DEV PACKAGES INSTALLED ===
+build-essential 12.12
+cmake 3.31.6-2
+g++ 4:14.2.0-1
+gcc 4:14.2.0-1
+libbz2-dev 1.0.8-6
+liblzma-dev 5.8.1-1
+libsqlite3-dev 3.46.1-7+deb13u1
+libssl-dev 3.5.5-1~deb13u1
+libxcb1-dev 1.17.0-2+b1
+make 4.4.1-2
+ninja-build 1.12.1-1
+uuid-dev 2.41-5
+zlib1g-dev 1:1.3.dfsg+really1.3.1-1+b1
+=== APT CANDIDATE AVAILABILITY (initial public/default state) ===
+meson candidate: UNKNOWN
+bison candidate: (none)
+flex candidate: (none)
+libdrm-dev candidate: UNKNOWN
+llvm-dev candidate: UNKNOWN
+libwayland-dev candidate: UNKNOWN
+wayland-protocols candidate: UNKNOWN
+libxcb-randr0-dev candidate: UNKNOWN
+libxcb-shm0-dev candidate: UNKNOWN
+libxcb-xfixes0-dev candidate: UNKNOWN
+libxcb-dri3-dev candidate: UNKNOWN
+libxcb-present-dev candidate: UNKNOWN
+libreadline-dev candidate: UNKNOWN
