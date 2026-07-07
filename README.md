@@ -35,6 +35,8 @@ evidence/       compact raw or near-raw evidence suitable for Git history
 playbook/       reusable workflow-selection guidance for new projects
 release-assets/ evidence bundle metadata, checksums, notices, and publication policy
 legacy/         historical packaging and repository-evolution records
+artifacts/      legacy Part I probe compatibility tree
+archive/        historical compatibility pointer
 ```
 
 ## Start here
