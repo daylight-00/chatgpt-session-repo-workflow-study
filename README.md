@@ -1,53 +1,98 @@
-# ChatGPT session workspace capability study
+# ChatGPT Session Workspace Study
 
-This repository studies one practical question:
+*An empirical capability study and workflow playbook for practical, evidence-preserving software project work in ChatGPT sessions.*
 
-> **Can a ChatGPT session function as a practical, evidence-preserving software project workspace?**
+> **Central question:** Can a ChatGPT session function as a practical, evidence-preserving software project workspace?
+>
+> **Result:** **Yes, conditionally.** The workflow becomes practical when runtime execution, durable evidence, repository state, external compute, and publication are treated as distinct systems with explicit handoff and verification boundaries.
 
-The investigation developed in three parts.
+## What was studied
 
-1. **Project workflow and persistence** — whether a session can create project state, persist artifacts, and operate on a GitHub repository.
-2. **Meta-observability and partial recovery** — how much of the session, artifact history, and experiment chronology can later be observed or reconstructed.
-3. **Execution workspace capability** — whether the sandbox can provision dependencies, execute code, build native software, run tests, debug failures, and complete realistic scientific-software work.
+The investigation developed in three parts:
 
-The overall result is positive but conditional: the session can support real project work when runtime state, durable artifacts, remote repository state, and historical context are treated as separate systems with explicit handoff and verification boundaries.
+1. **Project workflow and persistence** — session-local work, artifact handoff, connector boundaries, Google Drive backup, and real GitHub repository operations.
+2. **Meta-observability and partial recovery** — what artifact/session history can be observed and how much chronology can be reconstructed.
+3. **Active execution workspace capability** — runtime characterization, dependency provisioning, native build/test/debug work, and a realistic scientific-software pilot.
 
-## Study map
+Two complementary Part III pilots were used:
 
-- [`docs/00-study-overview.md`](docs/00-study-overview.md) — unifying question and three-part narrative.
+- **CPython** — native systems-development pilot covering dependency provisioning, configure/build, targeted tests, source modification, incremental rebuild, restoration, and GDB debugging.
+- **Foundry PR #306 / LigandMPNN** — scientific-software pilot covering real structure parsing, checkpoint provenance, CPU model inference, output validation, determinism checks, fault injection, recovery, and batch scaling. After the original raw archive was lost during a runtime reset, the pilot was rerun and a new independently verified evidence bundle was produced and round-trip recovered from off-runtime backup.
+
+## Key findings
+
+- Real repository-oriented project work is viable through explicit state boundaries and connector/API operations.
+- The sandbox can build, test, incrementally rebuild, debug native software, and run realistic CPU scientific workflows under resource constraints.
+- Runtime continuity is not guaranteed; local execution state must not be confused with durable artifact storage.
+- Resource visibility, authorization, connector action availability, and argument/file representation are separate failure boundaries.
+- Large raw evidence can be preserved off-runtime and verified by raw download, hash checking, reassembly, and final archive integrity validation.
+- The useful model is **hybrid**, not “run everything inside the sandbox.” GPU, HPC, GUI, CI, local workstation, and session execution should be composed according to workload and lifecycle.
+
+## Repository map
+
+```text
+docs/           study narrative, methods, interpretation, and assessment
+experiments/    procedures and experiment records
+evidence/       compact raw or near-raw evidence suitable for Git history
+playbook/       reusable workflow-selection guidance for new projects
+release-assets/ public evidence bundle metadata, checksums, notices, and release guide
+legacy/         historical packaging and repository-evolution records
+```
+
+## Start here
+
+### Read the study
+
+- [`docs/00-study-overview.md`](docs/00-study-overview.md) — central question and three-part narrative.
 - [`docs/01-method-and-evidence-policy.md`](docs/01-method-and-evidence-policy.md) — observation/inference discipline and evidence policy.
-- [`docs/part-1-project-workflow/overview.md`](docs/part-1-project-workflow/overview.md) — repository workflow and persistence.
-- [`docs/part-2-meta-observability/overview.md`](docs/part-2-meta-observability/overview.md) — session/file metadata and partial chronology recovery.
-- [`docs/part-3-execution-workspace/overview.md`](docs/part-3-execution-workspace/overview.md) — runtime, dependency provisioning, and two execution pilots.
-- [`docs/99-overall-assessment.md`](docs/99-overall-assessment.md) — cross-part assessment.
+- [`docs/99-overall-assessment.md`](docs/99-overall-assessment.md) — final cross-part assessment.
 
-## From capability study to practical use
+Part-specific entry points:
 
-The study now also includes a practical operational layer for new real projects:
+- [`docs/part-1-project-workflow/overview.md`](docs/part-1-project-workflow/overview.md)
+- [`docs/part-2-meta-observability/overview.md`](docs/part-2-meta-observability/overview.md)
+- [`docs/part-3-execution-workspace/overview.md`](docs/part-3-execution-workspace/overview.md)
 
-- [`playbook/README.md`](playbook/README.md) — purpose and design principles of the Session Workflow Playbook.
-- [`playbook/CHATGPT_SESSION_BOOTSTRAP.md`](playbook/CHATGPT_SESSION_BOOTSTRAP.md) — reusable entry brief for a fresh ChatGPT project session.
-- [`playbook/CAPABILITY_MATRIX.tsv`](playbook/CAPABILITY_MATRIX.tsv) — verified capabilities, conditions, tradeoffs, known failures, workarounds, and evidence pointers.
-- [`playbook/WORKFLOW_DECISION_TREE.md`](playbook/WORKFLOW_DECISION_TREE.md) — topology selection for source, execution, dependencies, checkpointing, artifact durability, and publication.
-- [`playbook/PRACTICAL_GUIDE_OUTLINE.md`](playbook/PRACTICAL_GUIDE_OUTLINE.md) — structure for the full field guide, reusable recipes, and future session-facing forms.
+### Use the findings in a new project
 
-The playbook is not a claim that every project should run inside the session sandbox. It treats the study as a capability map and helps a new project session choose among sandbox execution, GitHub-native automation, Google Drive durability, local workstations, external cluster/HPC execution, or hybrid compositions.
+- [`playbook/README.md`](playbook/README.md) — Session Workflow Playbook.
+- [`playbook/CHATGPT_SESSION_BOOTSTRAP.md`](playbook/CHATGPT_SESSION_BOOTSTRAP.md) — short entry brief for a fresh ChatGPT project session.
+- [`playbook/CAPABILITY_MATRIX.tsv`](playbook/CAPABILITY_MATRIX.tsv) — capability status, conditions, tradeoffs, failures, workarounds, and evidence pointers.
+- [`playbook/WORKFLOW_DECISION_TREE.md`](playbook/WORKFLOW_DECISION_TREE.md) — topology-first workflow selection.
 
-## Evidence model
+The playbook treats the study as prior operational knowledge, not as a prescription to use the session sandbox for every workload.
+
+## Evidence and durability model
 
 ```text
 Git repository
-  narrative, method, compact probes, scripts, small logs, manifests
+  narrative, methods, experiment records, compact evidence, playbook
 
-Release assets
-  complete pilot archives and verification sidecars
+Session runtime
+  active but ephemeral execution and development workspace
 
-Runtime filesystem
-  active but ephemeral working state
+Off-runtime backup
+  immediate durable preservation of valuable raw input/output/log bundles
+
+GitHub Release
+  curated publication of verified complete evidence bundles and sidecars
 ```
 
-Large pilot bundles are intentionally not committed to Git history. Their expected metadata and readiness state are tracked in [`release-assets/MANIFEST.tsv`](release-assets/MANIFEST.tsv).
+Small evidence suitable for Git history lives under [`evidence/`](evidence/). Large complete pilot bundles are tracked under [`release-assets/`](release-assets/) and published separately from the source tree.
 
-## Current Release readiness note
+## Evidence Release
 
-The CPython pilot bundle remains recoverable and externally backed up. The original Foundry PR #306 main archive was lost during a runtime reset, but a complete rerun has now reproduced the scientific workflow and produced a new fully verified raw bundle. The rerun archive is backed up in seven Google Drive chunks, was raw-downloaded and reassembled, and matched the local archive byte-for-byte. Public Release publication remains pending redistribution review for bundled source archives, runtime/package material, and the model checkpoint. The historical loss and the successful recovery-by-rerun are documented in [`docs/part-3-execution-workspace/runtime-lifecycle.md`](docs/part-3-execution-workspace/runtime-lifecycle.md).
+The planned `Study Evidence Bundle v1.0` Release contains the complete CPython pilot bundle, the independently verified Foundry rerun bundle, their verification sidecars, and supplemental study-level raw evidence. The connector-specific Drive chunk files are backup transport objects and are not part of the public Release asset set.
+
+See:
+
+- [`release-assets/RELEASE_GUIDE.md`](release-assets/RELEASE_GUIDE.md) — draft-first publication and verification procedure.
+- [`release-assets/RELEASE_ASSETS.tsv`](release-assets/RELEASE_ASSETS.tsv) — planned public asset set.
+- [`release-assets/SHA256SUMS`](release-assets/SHA256SUMS) — expected hashes for primary Release assets.
+- [`release-assets/THIRD_PARTY_NOTICES.md`](release-assets/THIRD_PARTY_NOTICES.md) — known third-party origins and publication-review notes.
+
+## Scope and caveats
+
+The study establishes practical capability under observed conditions; it does not claim permanent platform contracts. Connector surfaces, runtime resources, mirrors, and service behavior are environment-sensitive and should be rechecked when relevant. Capabilities that were not observed are not treated as impossible.
+
+The project-wide rights notice is in [`LICENSE.md`](LICENSE.md). Third-party source, packages, model parameters, and other bundled materials remain subject to their own licenses and notices.
