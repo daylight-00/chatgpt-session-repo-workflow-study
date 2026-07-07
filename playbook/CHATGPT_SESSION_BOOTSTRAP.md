@@ -16,7 +16,7 @@ It does not tell the session to run everything in the sandbox. It tells the sess
 I want to start a real project in this ChatGPT session.
 
 Use the Session Workflow Playbook in
-`daylight-00/chatgpt-session-repo-workflow-study/playbook/`
+`daylight-00/chatgpt-session-workspace-study/playbook/`
 as prior operational knowledge.
 
 Do not repeat capability-discovery experiments that the study has already completed unless a volatile current fact must be revalidated.
@@ -40,7 +40,7 @@ Use only the playbook sections and recipes relevant to this project. Do not assu
 I want to start and conduct a real project in this ChatGPT session.
 
 Prior operational knowledge exists in:
-`daylight-00/chatgpt-session-repo-workflow-study/playbook/`
+`daylight-00/chatgpt-session-workspace-study/playbook/`
 
 Treat that material as a capability map and workflow playbook, not as a rigid prescription.
 

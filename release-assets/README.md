@@ -1,31 +1,44 @@
 # Release asset policy
 
-Large experiment bundles are kept out of Git history.
+Large experiment bundles stay out of Git history and are published separately as evidence assets.
 
-`MANIFEST.tsv` records expected asset name, experiment role, byte size when known, SHA-256 when known, current availability, verification state, and redistribution-review state.
+`MANIFEST.tsv` records the complete known large-asset inventory, including historical objects that are not planned for publication. `RELEASE_ASSETS.tsv` records the narrower planned public asset set, and `SHA256SUMS` records expected hashes.
 
-A historical checksum alone is not enough to mark an asset Release-ready. The actual bytes must be available and reverified before publication.
+## Preservation and publication are separate stages
 
-## Backup durability and Release publication are separate stages
+The project preserves valuable raw evidence off-runtime first, verifies recovery, and only then prepares a curated evidence publication.
 
-The current workflow intentionally separates immediate preservation from curated publication:
+The off-runtime backup path was verified end-to-end for the CPython and Foundry rerun bundles. Drive chunk files are backup transport objects; the public evidence publication should use the original reassembled single-file archives.
 
-```text
-experiment completes
-→ archive and verify
-→ emergency Google Drive backup
-→ raw-download round-trip verification
-→ documentation and redistribution review
-→ GitHub Release publication when a supported publication path is available
-```
+## Planned evidence publication
 
-The Google Drive path has been verified end-to-end for both CPython and the Foundry rerun bundles.
+Tag: `study-v1.0.0`
 
-A separate GitHub connector capability assessment found that private repository access and admin permission were available while the observed connector surface exposed no direct Release creation, Release asset upload, explicit generic tag creation, or workflow-dispatch primitive. A repository-native Actions path remains plausible but has not yet been validated end-to-end.
+Title: `Study Evidence Bundle v1.0`
 
-Therefore `MANIFEST.tsv` should describe evidence readiness independently from publication-path readiness.
+Primary assets:
 
-See:
+- complete CPython pilot archive;
+- CPython verification sidecar;
+- complete Foundry rerun archive;
+- Foundry rerun verification sidecar;
+- supplemental study-level raw evidence bundle;
+- `SHA256SUMS`;
+- `RELEASE_ASSETS.tsv`;
+- `THIRD_PARTY_NOTICES.md`.
 
-- `docs/part-1-project-workflow/connector-boundaries.md`
-- `experiments/part-1-project-workflow/github-release-capability.md`
+Historical early snapshots and Drive chunk transport files are not part of the primary public asset set.
+
+## Publication procedure
+
+1. Confirm the final cleanup is merged into `main`.
+2. Confirm the tag target.
+3. Create the publication as a draft.
+4. Upload the planned assets.
+5. Download the draft assets again.
+6. Compare filenames and sizes with `RELEASE_ASSETS.tsv` and verify hashes with `SHA256SUMS`.
+7. Confirm archive integrity and review the verification sidecars.
+8. Review third-party notices and final publication scope.
+9. Publish only after all checks pass.
+
+After publication, repeat a public download and checksum verification once more.
