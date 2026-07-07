@@ -21,6 +21,18 @@ The overall result is positive but conditional: the session can support real pro
 - [`docs/part-3-execution-workspace/overview.md`](docs/part-3-execution-workspace/overview.md) — runtime, dependency provisioning, and two execution pilots.
 - [`docs/99-overall-assessment.md`](docs/99-overall-assessment.md) — cross-part assessment.
 
+## From capability study to practical use
+
+The study now also includes a practical operational layer for new real projects:
+
+- [`playbook/README.md`](playbook/README.md) — purpose and design principles of the Session Workflow Playbook.
+- [`playbook/CHATGPT_SESSION_BOOTSTRAP.md`](playbook/CHATGPT_SESSION_BOOTSTRAP.md) — reusable entry brief for a fresh ChatGPT project session.
+- [`playbook/CAPABILITY_MATRIX.tsv`](playbook/CAPABILITY_MATRIX.tsv) — verified capabilities, conditions, tradeoffs, known failures, workarounds, and evidence pointers.
+- [`playbook/WORKFLOW_DECISION_TREE.md`](playbook/WORKFLOW_DECISION_TREE.md) — topology selection for source, execution, dependencies, checkpointing, artifact durability, and publication.
+- [`playbook/PRACTICAL_GUIDE_OUTLINE.md`](playbook/PRACTICAL_GUIDE_OUTLINE.md) — structure for the full field guide, reusable recipes, and future session-facing forms.
+
+The playbook is not a claim that every project should run inside the session sandbox. It treats the study as a capability map and helps a new project session choose among sandbox execution, GitHub-native automation, Google Drive durability, local workstations, external cluster/HPC execution, or hybrid compositions.
+
 ## Evidence model
 
 ```text
