@@ -1,56 +1,41 @@
-# ChatGPT session repository workflow study
+# ChatGPT session workspace capability study
 
-Personal experiment record on whether a current ChatGPT session is suitable for repository-based project work.
+This repository studies one practical question:
 
-## Conclusion
+> **Can a ChatGPT session function as a practical, evidence-preserving software project workspace?**
 
-The session is sufficiently capable for small to medium repository-oriented work when the workflow is designed around three distinct surfaces:
+The investigation developed in three parts.
 
-1. **Session-local workspace** for file generation, transformation, packaging, and shell/Python operations.
-2. **File Library** for persistent user-facing artifacts promoted from session-local files through `sandbox:` references.
-3. **GitHub connector** for remote repository reads and writes through GitHub API abstractions rather than a local Git checkout.
+1. **Project workflow and persistence** — whether a session can create project state, persist artifacts, and operate on a GitHub repository.
+2. **Meta-observability and partial recovery** — how much of the session, artifact history, and experiment chronology can later be observed or reconstructed.
+3. **Execution workspace capability** — whether the sandbox can provision dependencies, execute code, build native software, run tests, debug failures, and complete realistic scientific-software work.
 
-The model is usable, but it is not equivalent to a conventional terminal development environment. The main constraints observed were:
+The overall result is positive but conditional: the session can support real project work when runtime state, durable artifacts, remote repository state, and historical context are treated as separate systems with explicit handoff and verification boundaries.
 
-- File Library management is not exposed as a writable filesystem or CRUD API.
-- Artifact promotion and Library search visibility are distinct stages.
-- GitHub writes are API-mediated; local `git pull` / `git push` credentials were not present in the shell.
-- The available GitHub connector surface did not expose repository creation or Release creation/upload functions in this session. This study repository was therefore created manually, after which the connector could populate it through repository content operations.
-- Direct default-branch ref mutation was safety-blocked in the packaging probe; feature branch, PR, and squash-merge publication succeeded.
-- Complete historical session recovery was not observed. Approximate chronology can still be reconstructed by combining File Library object metadata with session-level contextual information and event ordering.
+## Study map
 
-Detailed findings are in `docs/` and the experiment record is in `experiments/`.
+- [`docs/00-study-overview.md`](docs/00-study-overview.md) — unifying question and three-part narrative.
+- [`docs/01-method-and-evidence-policy.md`](docs/01-method-and-evidence-policy.md) — observation/inference discipline and evidence policy.
+- [`docs/part-1-project-workflow/overview.md`](docs/part-1-project-workflow/overview.md) — repository workflow and persistence.
+- [`docs/part-2-meta-observability/overview.md`](docs/part-2-meta-observability/overview.md) — session/file metadata and partial chronology recovery.
+- [`docs/part-3-execution-workspace/overview.md`](docs/part-3-execution-workspace/overview.md) — runtime, dependency provisioning, and two execution pilots.
+- [`docs/99-overall-assessment.md`](docs/99-overall-assessment.md) — cross-part assessment.
 
-## Layout
+## Evidence model
 
 ```text
-.
-├── README.md
-├── docs/
-│   ├── 01-scope-and-method.md
-│   ├── 02-session-local-workspace.md
-│   ├── 03-file-library-handoff.md
-│   ├── 04-github-connector.md
-│   ├── 05-suitability-assessment.md
-│   └── 06-search-and-timeline-reconstruction.md
-├── experiments/
-│   ├── matrix.md
-│   ├── timeline.md
-│   ├── github-probe.md
-│   ├── repository-packaging.md
-│   └── search-recovery.md
-├── artifacts/
-│   ├── README.md
-│   ├── manifest.tsv
-│   ├── files.tsv
-│   ├── inventory.tsv
-│   └── probes/
-└── archive/
-    └── README.md
+Git repository
+  narrative, method, compact probes, scripts, small logs, manifests
+
+Release assets
+  complete pilot archives and verification sidecars
+
+Runtime filesystem
+  active but ephemeral working state
 ```
 
-The tarball additionally contains `archive/MANIFEST.sha256`.
+Large pilot bundles are intentionally not committed to Git history. Their expected metadata and readiness state are tracked in [`release-assets/MANIFEST.tsv`](release-assets/MANIFEST.tsv).
 
-## Session date
+## Current Release readiness note
 
-2026-07-07, Asia/Seoul.
+The CPython pilot archive and its verification sidecar are currently recoverable in the session artifact layer. The Foundry PR #306 verification sidecar and expected main-archive SHA-256 are preserved, but the main archive bytes did not survive a later runtime reset. The runtime lifecycle finding is documented in [`docs/part-3-execution-workspace/runtime-lifecycle.md`](docs/part-3-execution-workspace/runtime-lifecycle.md).

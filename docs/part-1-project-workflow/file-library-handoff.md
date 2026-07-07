@@ -77,13 +77,13 @@ This behavior is distinct from the cross-segment duplicate-object observation. T
 
 For zero-byte text, PNG, and ZIP probes, artifact handoff events occurred, but the files were not observed through the text-oriented `file_search` surface used in the experiment.
 
-This establishes an important distinction:
-
 ```text
 artifact object existence != file_search retrievability
 ```
 
 Directory URI and nonexistent-path URI probes did not produce an observable artifact object.
+
+The tiny PNG and ZIP probes are now preserved as exact hex encodings under `evidence/part-1-project-workflow/binary-probes/`.
 
 ## Operational rule
 
@@ -92,4 +92,5 @@ For reliable user-facing persistence from the session-local workspace:
 1. create the file under `/mnt/data`;
 2. reference it in an assistant-authored message with a `sandbox:` URI or Markdown link;
 3. treat the resulting persistent object as a snapshot independent from later local changes;
-4. do not use `file_search` absence as proof that a non-text artifact object was never created.
+4. do not use `file_search` absence as proof that a non-text artifact object was never created;
+5. verify persistence of every critical output object because later runtime reset observations showed selective artifact rehydration rather than recursive workspace persistence.

@@ -1,0 +1,40 @@
+# Part I — Project workflow and persistence
+
+## Question
+
+Can a ChatGPT session organize project state, persist outputs, and work with a real remote repository?
+
+## Scope
+
+Part I covers session-local workspace behavior, `sandbox:` artifact handoff, File Library visibility and object behavior, local-file versus persistent-object boundaries, GitHub connector reads/writes, branch and ref behavior, commit attribution, pull requests, merges, and repository packaging.
+
+Detailed reports:
+
+- `scope-and-method.md`
+- `session-local-workspace.md`
+- `file-library-handoff.md`
+- `github-connector.md`
+- `assessment.md`
+
+Experiment records:
+
+- `experiments/part-1-project-workflow/matrix.md`
+- `experiments/part-1-project-workflow/timeline.md`
+- `experiments/part-1-project-workflow/github-probe.md`
+- `experiments/part-1-project-workflow/repository-packaging.md`
+
+## Core model
+
+```text
+session runtime filesystem
+        ↓ explicit handoff
+persistent artifact / File Library layer
+
+assistant
+        ↓ GitHub connector / API operations
+remote GitHub repository
+```
+
+## Conclusion
+
+The session is sufficiently capable for repository-oriented project work when the state domains are treated separately and transitions are explicit. GitHub operations are remote API mutations through the connector, while `/mnt/data` serves as an active local workspace whose durability must be handled explicitly.

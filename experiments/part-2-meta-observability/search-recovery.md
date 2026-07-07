@@ -31,8 +31,6 @@ No source conversation ID, source turn ID, role, assistant segment, branch ID, o
 
 The same long file was queried with different terms. Results kept the same file object ID while the returned snippet changed to match the query.
 
-Interpretation:
-
 ```text
 internal relevance may be chunk/content based
 external result unit is the file object
@@ -63,8 +61,6 @@ mtime = 2020-01-02T03:04:05Z
 ```
 
 Observed Library object timestamps were in 2026 at handoff time rather than 2020.
-
-Result:
 
 ```text
 Library created_at is not inherited source filesystem mtime
@@ -100,27 +96,17 @@ The timestamp exposed for a session was not proven to mean final modification ti
 
 ### Organ session
 
-A session mentioning Bach, organ, and harpsichord could be identified from supplied historical context by title, session-level timestamp, and content sequence.
-
-This was context access, not an explicit conversation search API call.
+A session mentioning Bach, organ, and harpsichord could be identified from supplied historical context by title, session-level timestamp, and content sequence. This was context access, not an explicit conversation search API call.
 
 ### Mesa activity
 
-Mesa-related historical sessions could also be referenced from available context even though the user later clarified that those sessions belonged to a different UI project.
-
-This invalidated a simple model in which only same-project conversations are available to current context.
-
-The experiment did not establish the selection mechanism that made those sessions available.
+Mesa-related historical sessions could also be referenced from available context even though the user later clarified that those sessions belonged to a different UI project. This invalidated a simple model in which only same-project conversations are available to current context. The experiment did not establish the selection mechanism that made those sessions available.
 
 ### MLEC negative case
 
-A requested MLEC session could not be located from the available context or File Library results.
-
-This result does not prove that the session does not exist. It establishes only that the available surfaces did not provide an enumerable account-wide conversation lookup path in this experiment.
+A requested MLEC session could not be located from the available context or File Library results. This does not prove that the session does not exist; it establishes only that the available surfaces did not provide an enumerable account-wide conversation lookup path in this experiment.
 
 ## Reconstruction model
-
-The strongest practical model is:
 
 ```text
 historical session context

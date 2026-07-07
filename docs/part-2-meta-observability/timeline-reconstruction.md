@@ -60,22 +60,7 @@ branch-node IDs            not observed
 generation IDs             not observed
 ```
 
-A session timeline can therefore be reconstructed semantically, for example:
-
-```text
-session timestamp
-  -> GPU verification
-  -> success confirmation
-  -> documentation request
-```
-
-but not as a precise wall-clock sequence such as:
-
-```text
-23:06:14 command
-23:08:02 result
-23:10:44 success confirmation
-```
+A session timeline can therefore be reconstructed semantically, but not as a precise wall-clock sequence.
 
 The session-level timestamp visible in context should not be labeled `created_at`, `updated_at`, or `last_modified_at` without additional evidence. This experiment established only that a session-level timestamp is exposed.
 
@@ -90,8 +75,6 @@ The local file mtime was forced to:
 ```
 
 After handoff, the File Library object showed 2026-07-07 creation/modification timestamps corresponding to the Library object lifecycle, not the source filesystem mtime.
-
-Therefore:
 
 ```text
 source filesystem mtime
@@ -133,14 +116,6 @@ This does not provide complete forensic reconstruction. Missing message timestam
 
 Complete recovery or direct enumeration of historical conversations was not observed.
 
-However, partial reconstruction is practical by combining:
-
-```text
-File Library object metadata
-+
-session-level contextual information
-+
-message/event ordering
-```
+However, partial reconstruction is practical by combining File Library object metadata, session-level contextual information, and message/event ordering.
 
 The result is sufficient for approximate experimental chronology and report reconstruction, but not for exact turn-by-turn auditing.

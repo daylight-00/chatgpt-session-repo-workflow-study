@@ -21,12 +21,12 @@ commit 9a55c92b4e740337d1a79c07f4d92a35b4fb47a3
 The remaining textual report and probe evidence was assembled with chained `create_tree` calls using content entries, followed by:
 
 ```text
-final tree    6d3d3a0c1375955cb8299d13db9471db4c8b18e8
-report commit cb344606fff593c7e7ba20476d7cf1e5bf5df4fd
-parent        9a55c92b4e740337d1a79c07f4d92a35b4fb47a3
+final tree     6d3d3a0c1375955cb8299d13db9471db4c8b18e8
+report commit  cb344606fff593c7e7ba20476d7cf1e5bf5df4fd
+parent         9a55c92b4e740337d1a79c07f4d92a35b4fb47a3
 ```
 
-The repository tree intentionally omitted the PNG and ZIP probe bytes because a direct binary `create_blob` attempt was blocked by the platform safety layer. Their original bytes remain in the tar.gz archive.
+The original repository tree omitted PNG and ZIP probe bytes because a direct binary `create_blob` attempt was blocked by the platform safety layer. During the later refactor audit, the early tar.gz snapshot was found not to contain those binaries either. The tiny original bytes are now preserved as exact hexadecimal encodings with original SHA-256 values under `evidence/part-1-project-workflow/binary-probes/`.
 
 ## Default branch publication
 

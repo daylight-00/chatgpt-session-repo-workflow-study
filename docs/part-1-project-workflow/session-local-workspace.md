@@ -42,17 +42,10 @@ Two execution modes were used:
 - shell execution through the container runtime;
 - visible Python execution through `python_user_visible.exec`.
 
-Neither tool, by file creation alone, caused File Library registration.
-
-A path printed in tool stdout also did not trigger promotion.
+Neither tool, by file creation alone, caused File Library registration. A path printed in tool stdout also did not trigger promotion.
 
 ## Practical role
 
-The local workspace is suitable for:
+The local workspace is suitable for generating reports, code, data, and archives; using shell utilities and Python for transformation; preparing files before artifact handoff; and assembling deterministic repository payloads.
 
-- generating reports, code, data, and archives;
-- using shell utilities and Python for transformation;
-- preparing files before handing them off as user-facing artifacts;
-- assembling deterministic repository payloads.
-
-It should be treated as ephemeral runtime storage unless a file is explicitly handed off to a persistent user-facing surface.
+It should be treated as ephemeral runtime storage unless a file is explicitly handed off to a persistent user-facing surface. Later runtime-reset observations strengthen this conclusion; see Part III `runtime-lifecycle.md`.
