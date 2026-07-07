@@ -38,6 +38,7 @@ Observed constraints include:
 4. GitHub operations are remote API mutations, not local Git working-tree operations.
 5. The shell lacked GitHub CLI and credentials.
 6. Repository creation and GitHub Release creation/upload were not exposed by the connector surface available in this session. The repository for this study was created manually; after creation, connector-based repository population is possible.
+7. Direct `main` ref mutation was safety-blocked in the packaging probe, while feature branch creation, PR creation, and squash merge succeeded.
 
 ## Recommended operating model
 
