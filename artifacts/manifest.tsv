@@ -1,0 +1,22 @@
+artifact	probe	observed_result
+session_test.txt	initial visible sandbox link	registered in File Library after handoff
+library_probe_visible.txt	linked file versus creation-only comparison	registered after sandbox handoff; later local mutation did not mutate prior Library snapshot
+library_probe_hidden.txt	creation-only comparison, later referenced	not registered while creation-only; registered after later sandbox reference
+turncommit_p0_creation_only_20260707.txt	runtime creation only	not found in Library search/navigation
+turncommit_p1_tool_stdout_20260707.txt	tool stdout prints exact local path	not found in Library search/navigation
+turncommit_p2_commentary_raw_20260707.txt	commentary raw sandbox URI	present in next-turn Library observation
+turncommit_p3_commentary_markdown_20260707.txt	commentary Markdown sandbox link	present in next-turn Library observation
+turncommit_p4_final_raw_20260707.txt	final raw sandbox URI	present in next-turn Library observation
+turncommit_p5_final_markdown_20260707.txt	final Markdown sandbox link	present in next-turn Library observation
+turncommit_p6_final_basename_20260707.txt	final basename only	not found in Library search/navigation
+stageboundary_commentary_probe_20260707.txt	commentary reference; same-turn polling; later final reference	same-turn absent, next-turn present; two logical Library objects observed after cross-segment references
+reverse_exp_abs_path_20260707.txt	assistant absolute /mnt/data path without sandbox scheme	not promoted
+reverse_exp_same_segment_20260707.txt	same sandbox URI twice in one commentary segment	one logical object observed
+reverse_exp_cross_stage_20260707.txt	same path referenced in commentary and final	two logical objects observed
+reverse_exp_empty_20260707.txt	zero-byte regular file sandbox handoff	handoff object creation observed; file_search visibility not observed
+reverse_exp_binary_20260707.png	binary PNG sandbox handoff	handoff object creation observed; text-search visibility not observed
+reverse_exp_archive_20260707.zip	ZIP sandbox handoff	handoff object creation observed; text-search visibility not observed
+reverse_exp_visibility_long_20260707.txt	sandbox handoff followed by ~20 s same-turn polling	same-turn absent, next-turn visible
+reverse_exp_rehandoff_20260707.txt	V1 handoff, local overwrite to V2, same-path re-reference	Library continued to expose V1 only in observed search surface
+__directory_uri_probe__	sandbox URI targeting an existing directory	no artifact promotion observed
+__nonexistent_path_probe__	sandbox URI targeting nonexistent regular file	no artifact promotion observed

@@ -38,6 +38,7 @@ Detailed findings are in `docs/` and the experiment record is in `experiments/`.
 │   ├── README.md
 │   ├── manifest.tsv
 │   ├── files.tsv
+│   ├── inventory.tsv
 │   └── probes/
 └── archive/
     ├── README.md
