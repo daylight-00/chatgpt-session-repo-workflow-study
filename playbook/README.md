@@ -51,6 +51,8 @@ Session Workflow Playbook
 
 The playbook may later generate or inform project-local `AGENTS.md`, `CLAUDE.md`, skills, prompts, scripts, or checklists. It should not assume that any one agent product or instruction mechanism is always present.
 
+For the detailed architecture, alternatives considered, design rationale, and external references, see [`DESIGN_RATIONALE.md`](DESIGN_RATIONALE.md).
+
 ## Design principles
 
 1. **Possibility, not doctrine.** The study established what can be done and under what conditions. It did not prove that the session sandbox is always the optimal execution location.
@@ -72,11 +74,14 @@ The playbook may later generate or inform project-local `AGENTS.md`, `CLAUDE.md`
 | `PLAUSIBLE_NOT_TESTED` | Architecturally reasonable path identified but not validated end-to-end. |
 | `NOT_OBSERVED` | Capability was not demonstrated in the study. This does not prove impossibility. |
 
-## Initial artifacts
+## Current playbook artifacts
 
+- `CHATGPT_SESSION_BOOTSTRAP.md` — explicit entry brief for a fresh ChatGPT project session.
 - `CAPABILITY_MATRIX.tsv` — compact map of options, status, conditions, tradeoffs, known failures, and workarounds.
 - `WORKFLOW_DECISION_TREE.md` — project-topology selection process.
 - `PRACTICAL_GUIDE_OUTLINE.md` — structure for the full operational guide and reusable recipes.
+- `DESIGN_RATIONALE.md` — design philosophy, alternatives considered, architecture rationale, and reference material.
+- `TODO.md` — deferred implementation, validation, recipe, adapter, and future experiment work.
 
 ## Intended use in a new ChatGPT project session
 
@@ -93,3 +98,9 @@ A new session should use the playbook as prior operational knowledge, then:
 ```
 
 The playbook is therefore best understood as a **session workflow selection and execution layer**, not merely as onboarding documentation.
+
+## Current development state
+
+The foundation phase is complete and intentionally paused before recipe implementation.
+
+When work resumes, follow [`TODO.md`](TODO.md) rather than expanding the guide indiscriminately. The next phase should prioritize a small set of evidence-backed procedures and test them in a genuinely new real project session.
