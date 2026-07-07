@@ -33,7 +33,7 @@ selective rehydration of persisted artifact objects
 
 They do not support the stronger claim that the platform deletes all files above a specific size threshold. Size may be relevant, but the experiment did not isolate it.
 
-## Recovery assessment
+## Original recovery assessment
 
 Preserved Foundry evidence:
 
@@ -45,21 +45,53 @@ Preserved Foundry evidence:
 
 Missing:
 
-- main archive bytes;
+- original main archive bytes;
 - original full Foundry experiment tree;
-- the main tree's standalone manifest and inventory files in the current runtime.
+- the original main tree's standalone manifest and inventory files in the reset runtime.
 
-The sidecar proves that the archive existed and verified successfully at creation time. It does not contain enough content data to reconstruct the exact archive bytes.
+The sidecar proves that the original archive existed and verified successfully at creation time. It does not contain enough content data to reconstruct the exact original archive bytes.
 
-Therefore:
+Therefore the historical state remains:
 
 ```text
-exact-byte recovery        not currently possible
-semantic reconstruction   possible by rerunning the pilot
-historical verification   preserved
-Release readiness         blocked for the Foundry main asset
+original exact-byte recovery     not possible from retained evidence
+historical verification          preserved
+semantic reconstruction          possible by rerunning the pilot
 ```
+
+## Successful semantic reconstruction by rerun
+
+The pilot was subsequently rerun from reacquired source/input/checkpoint provenance. The rerun reproduced the key functional behavior, including targeted tests, real CPU LigandMPNN inference, confidence output semantics, B-factor preservation, same-seed determinism semantics, batch-size 4 execution, and fault-injection detection/restoration.
+
+The rerun produced a new complete archive:
+
+```text
+foundry_pr306_rerun_20260707.tar.zst
+size:   422,189,189 bytes
+sha256: ff0a2aac97c04aa8f0c785a25ea43dcb275b4678c852b84c88c88a94f2d431f9
+```
+
+Verification covered `11,774` regular-file hashes and `13,263` inventory entries, with zero missing/type/mtime_ns/symlink-target/regular-file-size mismatches.
+
+For off-runtime durability, the archive was split into seven chunks of at most 64 MiB and uploaded to Google Drive. All seven chunks were then raw-downloaded, hash-verified, reassembled, and checked against the local archive. The result was byte-for-byte identical and passed Zstandard integrity verification.
+
+This does not recover the original lost bytes. It establishes a new independently verified evidence bundle and demonstrates that semantic recovery of the pilot is practical when source/input/checkpoint provenance is available.
 
 ## Policy implication
 
-The runtime filesystem must be treated as ephemeral. Critical evidence should be persisted per object, and large archives should have independently persisted checksums and verification sidecars. Long-running experiments should checkpoint compact evidence before final packaging.
+The runtime filesystem must be treated as ephemeral. Critical evidence should be persisted per object, and large archives should have independently persisted checksums and verification sidecars. Long-running experiments should checkpoint compact evidence during execution.
+
+The rerun adds a stronger operational rule:
+
+```text
+experiment completes
+→ compact checkpoint immediately
+→ full archive and verification
+→ chunk if connector limits require it
+→ off-runtime upload
+→ raw-download round trip
+→ chunk hash check
+→ reassembly and final archive hash check
+```
+
+Release readiness and public redistribution remain separate from backup durability. The rerun bundle is durably backed up, while public publication still requires redistribution review.
