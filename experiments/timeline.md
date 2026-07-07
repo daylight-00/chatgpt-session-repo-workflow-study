@@ -39,3 +39,17 @@ Observed commit timestamps:
 ```
 
 After commit creation, the branch ref was moved back to the update commit with a forced ref update, then advanced to the delete commit with a non-forced ref update.
+
+## Study repository packaging
+
+The public study repository was created manually by the user, then populated through the connector.
+
+Observed sequence:
+
+```text
+initial README commit       9a55c92b4e740337d1a79c07f4d92a35b4fb47a3
+assembled report commit     cb344606fff593c7e7ba20476d7cf1e5bf5df4fd
+PR #1 squash merge result   63d4395ad45b53f2aeda8b8033fb071dd73d56ad
+```
+
+A direct default-branch `update_ref` attempt was blocked by the platform safety layer. Creating a feature branch from the prepared commit, opening PR #1, and squash-merging the PR succeeded.
