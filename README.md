@@ -17,6 +17,7 @@ The model is usable, but it is not equivalent to a conventional terminal develop
 - GitHub writes are API-mediated; local `git pull` / `git push` credentials were not present in the shell.
 - The available GitHub connector surface did not expose repository creation or Release creation/upload functions in this session. This study repository was therefore created manually, after which the connector could populate it through repository content operations.
 - Direct default-branch ref mutation was safety-blocked in the packaging probe; feature branch, PR, and squash-merge publication succeeded.
+- Complete historical session recovery was not observed. Approximate chronology can still be reconstructed by combining File Library object metadata with session-level contextual information and event ordering.
 
 Detailed findings are in `docs/` and the experiment record is in `experiments/`.
 
@@ -30,12 +31,14 @@ Detailed findings are in `docs/` and the experiment record is in `experiments/`.
 │   ├── 02-session-local-workspace.md
 │   ├── 03-file-library-handoff.md
 │   ├── 04-github-connector.md
-│   └── 05-suitability-assessment.md
+│   ├── 05-suitability-assessment.md
+│   └── 06-search-and-timeline-reconstruction.md
 ├── experiments/
 │   ├── matrix.md
 │   ├── timeline.md
 │   ├── github-probe.md
-│   └── repository-packaging.md
+│   ├── repository-packaging.md
+│   └── search-recovery.md
 ├── artifacts/
 │   ├── README.md
 │   ├── manifest.tsv
