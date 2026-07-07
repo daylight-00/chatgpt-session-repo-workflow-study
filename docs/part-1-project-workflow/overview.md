@@ -8,15 +8,20 @@ Can a ChatGPT session organize project state, persist outputs, and work with a r
 
 Part I covers session-local workspace behavior, `sandbox:` artifact handoff, File Library visibility and object behavior, local-file versus persistent-object boundaries, GitHub connector reads/writes, branch and ref behavior, commit attribution, pull requests, merges, and repository packaging.
 
-Detailed reports currently remain at the historical paths:
+Detailed reports:
 
-- `docs/01-scope-and-method.md`
-- `docs/02-session-local-workspace.md`
-- `docs/03-file-library-handoff.md`
-- `docs/04-github-connector.md`
-- `docs/05-suitability-assessment.md`
+- `scope-and-method.md`
+- `session-local-workspace.md`
+- `file-library-handoff.md`
+- `github-connector.md`
+- `assessment.md`
 
-The corresponding experiment records currently remain under `experiments/` and will be moved only after the new study-level structure is stable.
+Experiment records:
+
+- `experiments/part-1-project-workflow/matrix.md`
+- `experiments/part-1-project-workflow/timeline.md`
+- `experiments/part-1-project-workflow/github-probe.md`
+- `experiments/part-1-project-workflow/repository-packaging.md`
 
 ## Core model
 
