@@ -43,9 +43,10 @@ Detailed findings are in `docs/` and the experiment record is in `experiments/`.
 │   ├── inventory.tsv
 │   └── probes/
 └── archive/
-    ├── README.md
-    └── MANIFEST.sha256
+    └── README.md
 ```
+
+The tarball additionally contains `archive/MANIFEST.sha256`.
 
 ## Session date
 
